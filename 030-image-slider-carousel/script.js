@@ -1,0 +1,3 @@
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CFG={"c": "slider", "s": ["<h2>🌄 Slide One</h2>Welcome to the carousel", "<h2>🌊 Slide Two</h2>Auto-plays every 4 seconds", "<h2>🏔️ Slide Three</h2>Use the arrows to navigate"], "k": "030-image-slider-carousel"};
+const S=CFG.s;let i=0,t;function r(){$('#sl').innerHTML=S[i];$('#dots').textContent=S.map((_,k)=>k==i?'●':'○').join(' ')}function mv(n){i=(i+n+S.length)%S.length;r();clearInterval(t);t=setInterval(()=>mv(1),4000)}mv(0)

@@ -1,0 +1,2 @@
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CFG={"t": "Hi, I'm Alex Morgan", "s": "Front-end developer · designer · coffee lover", "e": "🧑‍💻", "cta": "Contact me", "sec": [["About", "I build clean, accessible websites.", "👋"], ["Skills", "HTML, CSS, JavaScript, React", "🛠️"], ["Projects", "251 mini projects and counting", "🚀"]], "k": "001-personal-profile-card"};

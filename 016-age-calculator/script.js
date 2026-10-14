@@ -1,0 +1,6 @@
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CFG={"f": [["d", "Birth date", "2000-01-01", "date"]], "js": "const b=new Date(v.d),n=new Date();if(isNaN(b))return'Pick a date';let y=n.getFullYear()-b.getFullYear(),m=n.getMonth()-b.getMonth(),d=n.getDate()-b.getDate();if(d<0){m--;d+=new Date(n.getFullYear(),n.getMonth(),0).getDate()}if(m<0){y--;m+=12}return `<div class=big>${y} years</div>${m} months, ${d} days · ${Math.floor((n-b)/864e5).toLocaleString()} days alive`", "k": "016-age-calculator"};
+
+$('#form').innerHTML=CFG.f.map(([i,l,d,o])=>`<label>${l}${Array.isArray(o)?`<select id=${i}>${o.map(x=>`<option>${x}</option>`).join('')}</select>`:`<input id=${i} type=${o||'number'} value="${d}">`}</label>`).join('');
+const run=()=>{const v={};CFG.f.forEach(([i,,,o])=>{const e=$('#'+i);v[i]=o?e.value:+e.value});try{$('#out').innerHTML=new Function('v',CFG.js)(v)}catch(e){$('#out').textContent='Check your inputs'}};
+$('#form').oninput=run;run();
