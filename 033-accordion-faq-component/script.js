@@ -1,0 +1,3 @@
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CFG={"c": "accordion", "k": "033-accordion-faq-component"};
+const Q=[['What is HTML?','HTML structures web content.'],['What is CSS?','CSS styles the content.'],['What is JavaScript?','JS adds behaviour.']];$('#ac').innerHTML=Q.map(([q,a],i)=>`<div class=card style="margin:.4rem 0"><b style="cursor:pointer;display:block" onclick="tgl(${i})">${q}</b><div class=a style="display:none;margin-top:.5rem">${a}</div></div>`).join('');function tgl(i){document.querySelectorAll('.a').forEach((e,k)=>e.style.display=k==i&&e.style.display=='none'?'block':'none')}

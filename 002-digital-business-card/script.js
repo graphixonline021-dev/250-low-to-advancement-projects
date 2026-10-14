@@ -1,0 +1,2 @@
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CFG={"t": "Sara Khan — Product Designer", "s": "sara@example.com · +92 300 0000000 · example.com", "e": "💼", "cta": "Save contact", "sec": [["Email", "sara@example.com", "📧"], ["Phone", "+92 300 0000000", "📱"], ["Website", "example.com", "🌐"]], "k": "002-digital-business-card"};

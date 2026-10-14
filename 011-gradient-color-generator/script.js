@@ -1,0 +1,11 @@
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CFG={"m": "grad", "k": "011-gradient-color-generator"};
+
+const m=CFG.m,F=$('#form'),O=$('#out'),R=(a,b)=>Math.floor(Math.random()*(b-a+1))+a,H=()=>'#'+R(0,16777215).toString(16).padStart(6,'0');
+const G={
+num(){F.innerHTML='<input id=a type=number value=1><input id=b type=number value=100><button id=go>Generate</button>';$('#go').onclick=()=>O.innerHTML=`<div class=big>${R(+$('#a').value,+$('#b').value)}</div>`},
+pass(){F.innerHTML='<input id=n type=number value=16 min=4 max=64><label><input type=checkbox id=s checked> symbols</label><button id=go>Generate</button>';$('#go').onclick=()=>{const cs='abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'+($('#s').checked?'!@#$%^&*()-_=+':'');const a=crypto.getRandomValues(new Uint32Array($('#n').value));O.innerHTML=`<div class="big mono">${esc([...a].map(v=>cs[v%cs.length]).join(''))}</div>`}},
+color(){F.innerHTML='<input id=c type=color value="#3366ff">';$('#c').oninput=()=>{const h=$('#c').value,[r,g,b]=[1,3,5].map(i=>parseInt(h.substr(i,2),16));O.innerHTML=`<div class=swatch style="background:${h}"></div><p class=mono>${h} · rgb(${r}, ${g}, ${b})</p>`};$('#c').oninput()},
+bg(){F.innerHTML='<button id=go>Change background</button>';$('#go').onclick=()=>{const c=`hsl(${R(0,360)},70%,${R(60,85)}%)`;document.body.style.background=c;document.body.style.color='#111';O.textContent=c}},
+grad(){F.innerHTML='<input id=a type=color value="#ff6a00"><input id=b type=color value="#ee0979"><select id=d><option>to right</option><option>to bottom</option><option>135deg</option></select><button id=r>Random</button>';const u=()=>{const g=`linear-gradient(${$('#d').value},${$('#a').value},${$('#b').value})`;O.innerHTML=`<div class=swatch style="background:${g}"></div><p class=mono>background: ${g};</p>`};F.oninput=u;$('#r').onclick=()=>{$('#a').value=H();$('#b').value=H();u()};u()},
+dice(){F.innerHTML='<select id=n><option>1</option><option selected>2</option><option>3</option></select> dice <button id=go>Roll</button>';$('#go').onclick=()=>{const f='⚀⚁⚂⚃⚄⚅';O.innerHTML=`<div class=big style="font-size:4rem">${[...Array(+$('#n').value)].map(()=>f[R(0,5)]).join(' ')}</div>`}}};G[m]();

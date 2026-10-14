@@ -1,0 +1,3 @@
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const CFG={"c": "gallery", "lb": 1, "k": "032-lightbox-photo-viewer"};
+const I=['🌅','🏔️','🌊','🌲','🏜️','🌋','🌸','🗻','🏝️','🌌','🌈','🍂'];let cur=0;$('#gl').innerHTML=I.map((e,i)=>`<div class=card style="font-size:3rem;text-align:center;cursor:pointer;background:hsl(${i*30},60%,${CFG.lb?'60':'70'}%)" onclick="op(${i})">${e}</div>`).join('');function op(i){cur=i;lb.hidden=false;$('#lbi').textContent=I[i]}function lv(n){op((cur+n+I.length)%I.length)}addEventListener('keydown',e=>{if(e.key=='Escape')lb.hidden=true;if(e.key=='ArrowRight')lv(1);if(e.key=='ArrowLeft')lv(-1)})
